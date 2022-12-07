@@ -1,0 +1,16 @@
+{% extends 'projectapp/layout.html' %}
+{% block title %}Ban User{% endblock %}
+
+{% block content %}
+    <center>
+        <br><br>
+        <h1>Ban User</h1>
+        <div>
+            <form action="{% url 'index' %}" method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button class="btn btn-danger">Ban</button>
+            </form>
+        </div>
+    </center>
+{% endblock %}

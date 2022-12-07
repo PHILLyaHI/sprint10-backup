@@ -1,0 +1,16 @@
+{% extends 'projectapp/layout.html' %}
+{% block title %}Add Video{% endblock %}
+
+{% block content %}
+    <center>
+        <br><br>
+        <h1>Add Video</h1>
+        <div>
+            <form action="" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button class="btn btn-dark">Upload</button>
+            </form>
+        </div>
+    </center>
+{% endblock %}

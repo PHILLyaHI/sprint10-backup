@@ -1,0 +1,20 @@
+{% extends "projectapp/layout.html" %}
+
+{% block title %}WebSite{% endblock %}
+
+{% block content %}
+    {% for video in object_list %}
+    <div>
+        <br><br>
+        <a href="{% url 'video-detail' video.pk %}"><img src="{{ video.preview.url }}" alt="" width="300" height="200"></a>
+        <h5 class="mt-2 mb-2">{{video.title}}</h5>
+        <h7>{{ video.user }}</h7>
+        <br>
+        <h7>{{ video.date_added }}</h7>
+        <br><br>
+    </div>
+    {% endfor %}
+
+{% endblock %}
+
+

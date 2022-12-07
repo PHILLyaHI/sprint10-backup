@@ -1,0 +1,26 @@
+{% extends 'projectapp/layout.html' %}
+{% block title %}Search{% endblock %}
+
+{% block content %}
+    <br>
+        {% if searched %}
+            <center>
+                <h2>You Searched For {{ searched }}</h2>
+            </center>
+            {% for video in videos %}
+                <div>
+                    <br><br>
+                    <a href="{% url 'video-detail' video.pk %}"><img src="{{ video.preview.url }}" alt="" width="300" height="200"></a>
+                    <h5 class="mt-2 mb-2">{{video.title}}</h5>
+                    <h7>{{ video.user }}</h7>
+                    <br>
+                    <h7>{{ video.date_added }}</h7>
+                    <br><br>
+                </div>
+            {% endfor %}
+        {% else %}
+            <center>
+                <h2>You Forget to Search</h2>
+            </center>
+        {% endif %}
+{% endblock %}

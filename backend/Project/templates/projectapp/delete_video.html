@@ -1,0 +1,14 @@
+{% extends 'projectapp/layout.html' %}
+{% block title %}Delete Video{% block title %}
+
+{% block content %}
+<center>
+    <h1>Delte Video: {{ video.title }}</h1>
+    <br>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn btn-danger">Delte</button>
+    </form>
+</center>
+{% block content %}

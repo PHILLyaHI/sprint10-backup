@@ -1,0 +1,51 @@
+{% extends "projectapp/layout.html" %}
+
+{% block title %}Video: {{ video.title }}{% endblock %}
+
+{% block content %}
+<br>
+    <video class="embed-responsive embed-responsive-16by9" controls="controls" width="1150" height="650">
+     <source src="{{video.video.url}}" type="video/mp4" />
+    </video>
+    <h3 class="mt-2 mb-2">{{video.title}}</h3>
+    <h8 class="nav-link disabled">{{ video.date_added }}</h8>
+        <h5>{{ video.user }}</h5>
+    {% if user.is_authenticated %}
+    <form action="{% url 'like-video' video.pk %}" method="POST">
+        {% csrf_token %}
+        <button type="submit", name="video_id", value="{{ video.pk }}", class="btn btn-primary btn-sm">Like - {{ total_likes }}</button>
+    </form>
+    {% endif %}
+    <h5>{{ video.description }}</h5>
+
+    <hr>
+    <h3>Comments..</h3>
+    {% if not video.comments.all %}
+        <h5>No Comments</h5>
+        {% if user.is_authenticated %}
+        <a href="{% url 'add-comment' video.pk %}">Add a Comment</a>
+        {% endif %}
+    {% else %}
+        {% if user.is_authenticated %}
+        <a href="{% url 'add-comment' video.pk %}">Add a Comment</a><br><br>
+        {% for comment in video.comments.all %}
+            <strong>
+                By: {{ comment.user }}<br>
+                {{ comment.comment }}<br>
+            </strong>
+                <h7>{{ comment.date_added }}<br></h7>
+            <br>
+        {% endfor %}
+        {% else %}
+            {% for comment in video.comments.all %}
+            <strong>
+                {{ comment.user }}<br>
+                {{ comment.comment }}<br>
+                {{ comment.date_added }}<br>
+            </strong>
+            <br>
+            {% endfor %}
+        {% endif %}
+    {% endif %}
+    <br><br>
+{% endblock %}

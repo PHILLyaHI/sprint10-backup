@@ -1,0 +1,16 @@
+{% extends 'projectapp/layout.html' %}
+{% block title %}Registration{% endblock %}
+
+{% block content %}
+    <br><br>
+    <center>
+        <h1>Registration</h1><br>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="btn btn-dark">Register</button>
+            <br><br>
+            <p>Already have an account? <a href="{% url 'login' %}">Log In</a></p>
+        </form>
+    </center>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends 'projectapp/layout.html' %}
+{% block title %}Log In{% endblock %}
+
+{% block content %}
+    <br><br>
+    <center>
+        <h1>Log In</h1><br>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="btn btn-dark">Log In</button>
+            <br><br>
+            <p>Don't have an account? <a href="{% url 'register' %}">Create One</a></p>
+        </form>
+    </center>
+{% endblock %}
